@@ -1,0 +1,245 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+
+  color: var(--color-cream);
+  background:
+    radial-gradient(ellipse at 80% 20%, #79243a 0%, transparent 42%),
+    radial-gradient(ellipse at 10% 100%, #351019 0%, transparent 50%),
+    var(--color-burgundy);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: repeating-linear-gradient(
+    125deg,
+    transparent 0,
+    transparent 70px,
+    rgb(255 255 255 / 2%) 71px,
+    transparent 73px
+  );
+}
+
+.hero__container {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 76px 0;
+}
+
+.hero__eyebrow {
+  margin: 0 0 24px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  max-width: 700px;
+  margin: 0;
+
+  font-family: var(--font-heading);
+  font-size: clamp(54px, 8vw, 108px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+}
+
+.hero__title span {
+  color: var(--color-blush);
+  font-style: italic;
+}
+
+.hero__description {
+  margin: 28px 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.hero__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+
+  border: 1px solid var(--color-cream);
+  border-radius: 2px;
+  background: var(--color-cream);
+  color: var(--color-burgundy);
+
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.hero__button:hover {
+  background: transparent;
+  color: var(--color-cream);
+  transform: translateY(-2px);
+}
+
+.hero__button:focus-visible {
+  outline: 2px solid var(--color-blush);
+  outline-offset: 4px;
+}
+
+/* Декоративные книги */
+
+.hero__books {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__book {
+  position: absolute;
+  display: grid;
+  place-items: center;
+
+  width: 65px;
+  height: 94px;
+  border: 2px solid #c49b70;
+  border-radius: 3px 7px 7px 3px;
+
+  background: linear-gradient(
+    90deg,
+    #351019 0 12%,
+    #78263b 13% 88%,
+    #4a1725 89%
+  );
+
+  color: #ead2ae;
+  font-family: var(--font-heading);
+  font-size: 22px;
+
+  box-shadow: 7px 9px 18px rgb(0 0 0 / 25%);
+  animation: book-flight 12s linear infinite;
+}
+
+.hero__book--one {
+  top: 18%;
+  left: 110%;
+  --rotate: -24deg;
+  animation-delay: -2s;
+}
+
+.hero__book--two {
+  top: 62%;
+  left: 110%;
+  --rotate: 18deg;
+  animation-delay: -7s;
+}
+
+.hero__book--three {
+  top: 12%;
+  left: 110%;
+  --rotate: 35deg;
+  animation-delay: -10s;
+}
+
+.hero__book--four {
+  top: 70%;
+  left: 110%;
+  --rotate: -12deg;
+  animation-delay: -4s;
+}
+
+.hero__book--five {
+  top: 38%;
+  left: 110%;
+  --rotate: 27deg;
+  animation-delay: -5s;
+}
+
+.hero__page {
+  position: absolute;
+  color: #e8d0b3;
+  font-size: 90px;
+  opacity: 0.55;
+  animation: page-flight 9s linear infinite;
+}
+
+.hero__page--one {
+  top: 8%;
+  left: 110%;
+  animation-delay: -4s;
+}
+
+.hero__page--two {
+  top: 55%;
+  left: 110%;
+  animation-delay: -8s;
+}
+
+@keyframes book-flight {
+  from {
+    transform: translateX(0) rotate(var(--rotate, 15deg));
+  }
+
+  to {
+    transform: translateX(-130vw) rotate(calc(var(--rotate, 15deg) + 180deg));
+  }
+}
+
+@keyframes page-flight {
+  from {
+    transform: translateX(0) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-130vw) rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 420px;
+  }
+
+  .hero__container {
+    width: calc(100% - 32px);
+    padding: 64px 0;
+  }
+
+  .hero__title {
+    font-size: clamp(48px, 12vw, 68px);
+    letter-spacing: -2px;
+  }
+
+  .hero__book {
+    width: 40px;
+    height: 60px;
+    font-size: 15px;
+  }
+
+  .hero__page {
+    font-size: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__book,
+  .hero__page {
+    animation: none;
+    display: none;
+  }
+}

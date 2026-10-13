@@ -1,0 +1,169 @@
+.main {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  min-height: 570px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color-cream);
+  color: var(--color-burgundy);
+}
+
+/* Кружево покрывает всю секцию, а не только заголовок. */
+.main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    url("../../assets/images/lace-bg.png"),
+    radial-gradient(
+      ellipse at center,
+      #fffaf1 0%,
+      #f5eadc 70%
+    );
+
+  background-size: cover, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.95;
+}
+
+/* Лёгкая вуаль, чтобы текст оставался читаемым. */
+.main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: rgb(255 249 239 / 15%);
+}
+
+.main__container {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 90px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main__content {
+  max-width: 680px;
+  text-align: center;
+}
+
+.main__ornament {
+  display: block;
+  margin-bottom: 22px;
+  font-family: var(--font-heading);
+  font-size: 44px;
+  line-height: 1;
+}
+
+.main__eyebrow {
+  margin: 0 0 18px;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.main__title {
+  margin: 0;
+
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 5vw, 62px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+}
+
+.main__title span {
+  font-style: italic;
+}
+
+.main__description {
+  margin: 24px 0 30px;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.main__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 50px;
+  padding: 0 28px;
+
+  border: 1px solid var(--color-burgundy);
+  border-radius: 40px;
+  background-color: var(--color-burgundy);
+  color: var(--color-cream);
+
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.main__button:hover {
+  background-color: transparent;
+  color: var(--color-burgundy);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgb(76 20 36 / 10%);
+}
+
+.main__button:focus-visible {
+  outline: 2px solid var(--color-burgundy);
+  outline-offset: 4px;
+}
+
+.main__caption {
+  margin: 28px 0 0;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+@media (max-width: 600px) {
+  .main {
+    min-height: 500px;
+  }
+
+  .main__container {
+    width: calc(100% - 32px);
+    padding: 70px 0;
+  }
+
+  .main__title {
+    font-size: clamp(34px, 9vw, 46px);
+    letter-spacing: -1px;
+  }
+
+  .main__description {
+    font-size: 13px;
+  }
+
+  .main__desktop-break {
+    display: none;
+  }
+
+  .main__caption {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+}
